@@ -50,7 +50,7 @@ export default function BetTypeTable({
                 variant="ghost"
                 size="sm"
                 className="h-7 w-7 p-0 rounded-full hover:bg-[#7ED957]/10 hover:text-[#7ED957]"
-                onClick={() => handleAddToBetslip(option.name, option.odds)}
+                onClick={() => if (value !== null) {handleAddToBetslip(option.name, option.odds)}}
               >
                 <PlusCircle className="h-4 w-4" />
               </Button>
