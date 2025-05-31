@@ -41,10 +41,10 @@ const gridClass = {
      <div className={`grid ${gridClass} gap-3`}>
       {options.map((option, index) => (
         <div 
-          key={index}
-          className={`bg-[#252525] rounded-lg p-3 border border-[#333333] ${
-            option.odds === null ? 'opacity-60' : 'hover:border-[#7ED957]/30'
-          } transition-all`}
+           key={index}
+        className={`bg-[#252525] rounded-lg p-3 border border-[#333333] ${
+          option.odds === null ? 'opacity-60' : 'hover:border-[#7ED957]/30'
+        } transition-all`}
         >
           <div className="flex justify-between items-center">
             <div>
