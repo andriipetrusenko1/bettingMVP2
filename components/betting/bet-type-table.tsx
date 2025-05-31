@@ -30,9 +30,15 @@ export default function BetTypeTable({
       description: "Check your bet slip to confirm and place your bet."
     });
   };
+const gridClass = {
+  1: 'grid-cols-1',
+  2: 'grid-cols-2',
+  3: 'grid-cols-3',
+  4: 'grid-cols-4',
+}[grid] || 'grid-cols-2'; // default fallback
 
   return (
-    <div className={`grid grid-cols-${grid} gap-3`}>
+     <div className={`grid ${gridClass} gap-3`}>
       {options.map((option, index) => (
         <div 
           key={index}
