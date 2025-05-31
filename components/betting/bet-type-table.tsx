@@ -35,17 +35,17 @@ const gridClass = {
   2: 'grid-cols-2',
   3: 'grid-cols-3',
   4: 'grid-cols-4',
-}[grid] || 'grid-cols-2'; // default fallback
+}[grid] || 'grid-cols-2';
 
   return (
      <div className={`grid ${gridClass} gap-3`}>
       {options.map((option, index) => (
-        <div 
-           key={index}
+        <div
+        key={index}
         className={`bg-[#252525] rounded-lg p-3 border border-[#333333] ${
           option.odds === null ? 'opacity-60' : 'hover:border-[#7ED957]/30'
         } transition-all`}
-        >
+      >
           <div className="flex justify-between items-center">
             <div>
               <p className="text-sm">{option.name}</p>
