@@ -11,6 +11,8 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { toast } from "sonner";
 
+const drawOdds = match.odds.moneyline.draw;
+
 // Mock data
 const mockMatches = [
   {
@@ -266,29 +268,29 @@ export default function MatchGrid() {
                         </div>
                       </Button>
                       
-                      {match.odds.moneyline.draw !== null ? (
-                        <Button 
-                          variant="outline" 
-                          className="hover:bg-[#7ED957]/10 hover:border-[#7ED957]/30 hover:text-[#7ED957]"
-                          onClick={() => handleAddToBetslip(match.id, "Draw", match.odds.moneyline.draw, 'moneyline')}
-                        >
-                          <div className="flex flex-col items-center w-full">
-                            <span className="text-xs">Draw</span>
-                            <span className="text-sm font-bold">{formatOdds(match.odds.moneyline.draw)}</span>
-                          </div>
-                        </Button>
-                      ) : (
-                        <Button 
-                          variant="outline" 
-                          disabled
-                          className="opacity-50 cursor-not-allowed"
-                        >
-                          <div className="flex flex-col items-center w-full">
-                            <span className="text-xs">Draw</span>
-                            <span className="text-sm">N/A</span>
-                          </div>
-                        </Button>
-                      )}
+                     {drawOdds !== null ? (
+  <Button 
+    variant="outline" 
+    className="hover:bg-[#7ED957]/10 hover:border-[#7ED957]/30 hover:text-[#7ED957]"
+    onClick={() => handleAddToBetslip(match.id, "Draw", drawOdds, 'moneyline')}
+  >
+    <div className="flex flex-col items-center w-full">
+      <span className="text-xs">Draw</span>
+      <span className="text-sm font-bold">{formatOdds(drawOdds)}</span>
+    </div>
+  </Button>
+) : (
+  <Button 
+    variant="outline" 
+    disabled
+    className="opacity-50 cursor-not-allowed"
+  >
+    <div className="flex flex-col items-center w-full">
+      <span className="text-xs">Draw</span>
+      <span className="text-sm">N/A</span>
+    </div>
+  </Button>
+)}
                       
                       <Button 
                         variant="outline" 
