@@ -219,18 +219,16 @@ export default function MatchGrid() {
   };
 
   return (
-    <div>
-      {/* Your UI code here */}
-      <Tabs
+    <Tabs
   value={betType}
   onValueChange={(value) => setBetType(value as "spread" | "moneyline" | "total")}
-/>
-        <TabsList>
-          <TabsTrigger value="moneyline">Moneyline</TabsTrigger>
-          <TabsTrigger value="spread">Spread</TabsTrigger>
-          <TabsTrigger value="total">Total</TabsTrigger>
-        </TabsList>
-      </Tabs>
+>
+  <TabsList>
+    <TabsTrigger value="moneyline">Moneyline</TabsTrigger>
+    <TabsTrigger value="spread">Spread</TabsTrigger>
+    <TabsTrigger value="total">Total</TabsTrigger>
+  </TabsList>
+</Tabs>
 
       <div className="matches-grid">
         {matches.map((match) => (
