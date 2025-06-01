@@ -49,30 +49,3 @@ export default function BetTypeTable({
         >
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-sm">{option.name}</p>
-            </div>
-
-            {option.odds !== null ? (
-              <Button 
-                variant="ghost"
-                size="sm"
-                className="h-7 w-7 p-0 rounded-full hover:bg-[#7ED957]/10 hover:text-[#7ED957]"
-                onClick={() => handleAddToBetslip(option.name, option.odds)}
-              >
-                <PlusCircle className="h-4 w-4" />
-              </Button>
-            ) : (
-              <Badge variant="outline" className="text-xs">N/A</Badge>
-            )}
-          </div>
-
-          {option.odds !== null && (
-            <div className="mt-2">
-              <span className="text-[#7ED957] font-bold">{option.odds.toFixed(2)}</span>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-  );
-}
