@@ -206,9 +206,89 @@ export default function MatchGrid() {
   );
   const [matches, setMatches] = useState(mockMatches);
 
+  // Complete the function and close it properly
   const handleAddToBetslip = (
     matchId: string,
     team: string,
     odds: number,
     betTypeSelected: string
-  )
+  ) => {
+    // Example placeholder logic for adding to betslip
+    console.log(`Added to betslip: Match ${matchId}, Team ${team}, Odds ${odds}, BetType ${betTypeSelected}`);
+    // Could call toast or update state here
+  };
+
+  return (
+    <div>
+      {/* Your UI code here */}
+      <Tabs value={betType} onValueChange={setBetType}>
+        <TabsList>
+          <TabsTrigger value="moneyline">Moneyline</TabsTrigger>
+          <TabsTrigger value="spread">Spread</TabsTrigger>
+          <TabsTrigger value="total">Total</TabsTrigger>
+        </TabsList>
+      </Tabs>
+
+      <div className="matches-grid">
+        {matches.map((match) => (
+          <Card key={match.id}>
+            <CardContent>
+              <div className="teams">
+                <div>{match.team1.name}</div>
+                <div>vs</div>
+                <div>{match.team2.name}</div>
+              </div>
+
+              {/* Display odds based on betType */}
+              {betType === "moneyline" && (
+                <div>
+                  <Button
+                    onClick={() =>
+                      handleAddToBetslip(
+                        match.id,
+                        match.team1.name,
+                        match.odds.moneyline.team1!,
+                        "moneyline"
+                      )
+                    }
+                  >
+                    {match.odds.moneyline.team1}
+                  </Button>
+                  {match.odds.moneyline.draw !== null && (
+                    <Button
+                      onClick={() =>
+                        handleAddToBetslip(
+                          match.id,
+                          "Draw",
+                          match.odds.moneyline.draw!,
+                          "moneyline"
+                        )
+                      }
+                    >
+                      {match.odds.moneyline.draw}
+                    </Button>
+                  )}
+                  <Button
+                    onClick={() =>
+                      handleAddToBetslip(
+                        match.id,
+                        match.team2.name,
+                        match.odds.moneyline.team2!,
+                        "moneyline"
+                      )
+                    }
+                  >
+                    {match.odds.moneyline.team2}
+                  </Button>
+                </div>
+              )}
+
+              {/* Similarly add Spread and Total UI here */}
+
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
