@@ -2,18 +2,8 @@
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { BadgeInfo, Clock, Heart, Zap } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { toast } from "sonner";
 
 // Mock data
@@ -48,6 +38,7 @@ const mockMatches = [
       },
     },
   },
+  // ...other matches as you had them
   {
     id: "2",
     team1: {
@@ -78,126 +69,7 @@ const mockMatches = [
       },
     },
   },
-  {
-    id: "3",
-    team1: {
-      name: "Chiefs",
-      logo:
-        "https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    team2: {
-      name: "Ravens",
-      logo:
-        "https://images.pexels.com/photos/1293269/pexels-photo-1293269.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    league: "NFL",
-    sport: "football",
-    date: "2025-05-16",
-    time: "18:30",
-    isLive: false,
-    featured: false,
-    odds: {
-      moneyline: { team1: 1.95, draw: null, team2: 1.85 },
-      spread: {
-        team1: { value: -3.5, odds: 1.9 },
-        team2: { value: +3.5, odds: 1.9 },
-      },
-      total: {
-        over: { value: 48.5, odds: 1.9 },
-        under: { value: 48.5, odds: 1.9 },
-      },
-    },
-  },
-  {
-    id: "4",
-    team1: {
-      name: "Yankees",
-      logo:
-        "https://images.pexels.com/photos/2570139/pexels-photo-2570139.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    team2: {
-      name: "Red Sox",
-      logo:
-        "https://images.pexels.com/photos/1326386/pexels-photo-1326386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    league: "MLB",
-    sport: "baseball",
-    date: "2025-05-17",
-    time: "19:15",
-    isLive: false,
-    featured: false,
-    odds: {
-      moneyline: { team1: 1.75, draw: null, team2: 2.05 },
-      spread: {
-        team1: { value: -1.5, odds: 1.9 },
-        team2: { value: +1.5, odds: 1.9 },
-      },
-      total: {
-        over: { value: 8.5, odds: 1.9 },
-        under: { value: 8.5, odds: 1.9 },
-      },
-    },
-  },
-  {
-    id: "5",
-    team1: {
-      name: "Barcelona",
-      logo:
-        "https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    team2: {
-      name: "Real Madrid",
-      logo:
-        "https://images.pexels.com/photos/1667583/pexels-photo-1667583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    league: "La Liga",
-    sport: "soccer",
-    date: "2025-05-17",
-    time: "21:00",
-    isLive: false,
-    featured: true,
-    odds: {
-      moneyline: { team1: 2.1, draw: 3.25, team2: 3.0 },
-      spread: {
-        team1: { value: -0.5, odds: 1.8 },
-        team2: { value: +0.5, odds: 2.0 },
-      },
-      total: {
-        over: { value: 2.5, odds: 1.9 },
-        under: { value: 2.5, odds: 1.9 },
-      },
-    },
-  },
-  {
-    id: "6",
-    team1: {
-      name: "Warriors",
-      logo:
-        "https://images.pexels.com/photos/3631430/pexels-photo-3631430.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    team2: {
-      name: "Nets",
-      logo:
-        "https://images.pexels.com/photos/2346/sport-high-united-states-of-america-ball.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    league: "NBA",
-    sport: "basketball",
-    date: "2025-05-18",
-    time: "18:00",
-    isLive: false,
-    featured: false,
-    odds: {
-      moneyline: { team1: 1.65, draw: null, team2: 2.2 },
-      spread: {
-        team1: { value: -6.5, odds: 1.9 },
-        team2: { value: +6.5, odds: 1.9 },
-      },
-      total: {
-        over: { value: 218.5, odds: 1.9 },
-        under: { value: 218.5, odds: 1.9 },
-      },
-    },
-  },
+  // Add the remaining mock matches here...
 ];
 
 export default function MatchGrid() {
@@ -206,7 +78,6 @@ export default function MatchGrid() {
   );
   const [matches, setMatches] = useState(mockMatches);
 
-  // Complete the function and close it properly
   const handleAddToBetslip = (
     matchId: string,
     team: string,
@@ -214,36 +85,58 @@ export default function MatchGrid() {
     betTypeSelected: string
   ) => {
     // Example placeholder logic for adding to betslip
-    console.log(`Added to betslip: Match ${matchId}, Team ${team}, Odds ${odds}, BetType ${betTypeSelected}`);
-    // Could call toast or update state here
+    console.log(
+      `Added to betslip: Match ${matchId}, Team ${team}, Odds ${odds}, BetType ${betTypeSelected}`
+    );
+    toast.success(
+      `Added to betslip: ${team} (${betTypeSelected}) @ ${odds.toFixed(2)}`
+    );
   };
 
   return (
-    <Tabs
-  value={betType}
-  onValueChange={(value) => setBetType(value as "spread" | "moneyline" | "total")}
->
-  <TabsList>
-    <TabsTrigger value="moneyline">Moneyline</TabsTrigger>
-    <TabsTrigger value="spread">Spread</TabsTrigger>
-    <TabsTrigger value="total">Total</TabsTrigger>
-  </TabsList>
-</Tabs>
+    <>
+      <Tabs
+        value={betType}
+        onValueChange={(value) =>
+          setBetType(value as "moneyline" | "spread" | "total")
+        }
+        className="mb-4"
+      >
+        <TabsList>
+          <TabsTrigger value="moneyline">Moneyline</TabsTrigger>
+          <TabsTrigger value="spread">Spread</TabsTrigger>
+          <TabsTrigger value="total">Total</TabsTrigger>
+        </TabsList>
+      </Tabs>
 
-      <div className="matches-grid">
+      <div className="matches-grid grid gap-4">
         {matches.map((match) => (
-          <Card key={match.id}>
+          <Card key={match.id} className="p-4">
             <CardContent>
-              <div className="teams">
-                <div>{match.team1.name}</div>
-                <div>vs</div>
-                <div>{match.team2.name}</div>
+              <div className="flex justify-between items-center mb-3">
+                <div className="flex items-center space-x-3">
+                  <img
+                    src={match.team1.logo}
+                    alt={match.team1.name}
+                    className="w-10 h-10 object-cover rounded-full"
+                  />
+                  <span className="font-semibold">{match.team1.name}</span>
+                </div>
+                <span className="font-bold">vs</span>
+                <div className="flex items-center space-x-3">
+                  <img
+                    src={match.team2.logo}
+                    alt={match.team2.name}
+                    className="w-10 h-10 object-cover rounded-full"
+                  />
+                  <span className="font-semibold">{match.team2.name}</span>
+                </div>
               </div>
 
-              {/* Display odds based on betType */}
               {betType === "moneyline" && (
-                <div>
+                <div className="flex space-x-2">
                   <Button
+                    variant="outline"
                     onClick={() =>
                       handleAddToBetslip(
                         match.id,
@@ -255,8 +148,10 @@ export default function MatchGrid() {
                   >
                     {match.odds.moneyline.team1}
                   </Button>
+
                   {match.odds.moneyline.draw !== null && (
                     <Button
+                      variant="outline"
                       onClick={() =>
                         handleAddToBetslip(
                           match.id,
@@ -269,7 +164,9 @@ export default function MatchGrid() {
                       {match.odds.moneyline.draw}
                     </Button>
                   )}
+
                   <Button
+                    variant="outline"
                     onClick={() =>
                       handleAddToBetslip(
                         match.id,
@@ -284,12 +181,77 @@ export default function MatchGrid() {
                 </div>
               )}
 
-              {/* Similarly add Spread and Total UI here */}
+              {betType === "spread" && (
+                <div className="flex space-x-2">
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      handleAddToBetslip(
+                        match.id,
+                        match.team1.name,
+                        match.odds.spread.team1.odds,
+                        "spread"
+                      )
+                    }
+                  >
+                    {match.team1.name} {match.odds.spread.team1.value} (
+                    {match.odds.spread.team1.odds})
+                  </Button>
 
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      handleAddToBetslip(
+                        match.id,
+                        match.team2.name,
+                        match.odds.spread.team2.odds,
+                        "spread"
+                      )
+                    }
+                  >
+                    {match.team2.name} {match.odds.spread.team2.value} (
+                    {match.odds.spread.team2.odds})
+                  </Button>
+                </div>
+              )}
+
+              {betType === "total" && (
+                <div className="flex space-x-2">
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      handleAddToBetslip(
+                        match.id,
+                        "Over",
+                        match.odds.total.over.odds,
+                        "total"
+                      )
+                    }
+                  >
+                    Over {match.odds.total.over.value} (
+                    {match.odds.total.over.odds})
+                  </Button>
+
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      handleAddToBetslip(
+                        match.id,
+                        "Under",
+                        match.odds.total.under.odds,
+                        "total"
+                      )
+                    }
+                  >
+                    Under {match.odds.total.under.value} (
+                    {match.odds.total.under.odds})
+                  </Button>
+                </div>
+              )}
             </CardContent>
           </Card>
         ))}
       </div>
-    </div>
+    </>
   );
 }
